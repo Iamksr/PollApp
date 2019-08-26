@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+development:
+  <<: *default
+  database: poll
+  username: root
+  password: root
+
+
+production:
+  <<: *default
+  database: poll
+  username: root
+  password: root
+
+
