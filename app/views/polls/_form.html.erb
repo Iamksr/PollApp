@@ -10,28 +10,31 @@
       </ul>
     </div>
   <% end %>
+<div class="container">
 
   <div class="field">
     <%= f.label :Title %>
-    <%= f.text_field :Title %>
+    <%= f.text_field :Title,class: "form-control" %>
   </div>
-
+<br>
   <div class="field">
     <%= f.label :Description %>
-    <%= f.text_field :Description %>
+    <%= f.text_field :Description,class: "form-control"%>
   </div>
 
   <div class="field">
     <%= f.label :Start_Date %>
-    <%= f.datetime_select :Start_Date %>
+    <%= f.datetime_field :Start_Date,class: "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :End_Date %>
-    <%= f.datetime_select :End_Date %>
+    <%= f.datetime_field :End_Date,class: "form-control" %>
   </div>
 
   <div class="actions">
     <%= f.submit %>
   </div>
+</div>
+
 <% end %>

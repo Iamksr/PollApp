@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Polls</h1>
-
+ <div class= "container">
 <table>
   <thead>
     <tr>
@@ -13,7 +13,6 @@
     </tr>
   </thead>
   <tbody>
- <div class= "container">
  
     <% @polls.each do |poll| %>
       <tr>
@@ -27,9 +26,9 @@
       </tr>
     <% end %>
      </div>
-  </tbody>
+  </
 </table>
 
 <br>
 
-<%= link_to 'New Poll', new_poll_path %>
+<%= link_to 'New Poll', new_poll_path,class: "btn btn-info" %>
