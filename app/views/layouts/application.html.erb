@@ -6,45 +6,64 @@
   
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<style>
+  body {font-family: Arial, Helvetica, sans-serif;}
+
+.navbar {
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background-color: #000;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+</style>
 <body>
+</style>
 <div>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <ul class="navbar-nav">
     <% if user_signed_in? %>
     <% if current_user.role == "admin" %>
    
-  
     <% end %>
     <% end %>
     <% if user_signed_in? %> 
-     <li class="nav-item">
-        <a class="nav-link" href="/polls">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/polls">Poll Detail Page</a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="/categories">Category</a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="/users/sign_out">Sign Out</a>
+     <div class="navbar">
+  <a class="active" href="/polls"><i class="fa fa-fw fa-home"></i> Home</a> 
+  <a href="#"><i class="fa fa-fw fa-search"></i> Search</a> 
+  <a href="/polls"><i class="fa fa-fw fa-database"></i>Poll Details Page</a> 
+  <a href="<% destroy_user_session_path%>"><i class="fa fa-fw fa-sign-out"></i> Log Out</a>
+</div>
       </li>
       <% else %>
-      <li class="nav-item">
-        <ul>
-        <a class="nav-link" href="polls/welcome">Home</a>
-      </ul>
-         <li class="nav-item">
-        <a class="nav-link" href="/categories">Category</a>
-      </li>
-      <li class="nav-item">
-        <ul>
-        <a class="nav-link" href="<%=new_user_session_path%>">Login</a>
-      </ul>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/users/sign_up">Sign Up</a>
+     <div class="navbar">
+  <a href="polls/welcome"><i class="fa fa-fw fa-home"></i> Home</a> 
+  <a href="#"><i class="fa fa-fw fa-search"></i> Search</a> 
+  <a href="/categories"><i class="fa fa-fw fa-tasks"></i> Category</a> 
+  <a href="<%=new_user_session_path%>"><i class="fa fa-fw fa-user"></i> Log In</a>
+  <a href="/categories"><i class="fa fa-fw fa-user-plus"></i> Sign Up</a> 
+</div>
       </li>
     <title>PollApp</title>
       </li>
