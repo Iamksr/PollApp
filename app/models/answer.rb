@@ -1,3 +1,5 @@
 class Answer < ApplicationRecord
-	belongs_to :poll
+	has_many :myoptions
+	
+	# belongs_to :poll, optional: true
 end

@@ -1,7 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Polls</h1>
+<h1>Poll Detail Page</h1>
  <div class= "container">
+  <%= form_tag "/polls", :method=>"get" do %>
+    <%= text_field_tag :search, nil, :placeholder=>"search poll_vote" %>
+    <%= submit_tag "search", class: "btn btn-success"%>
+  <% end %>
+  <div class="field">
+    <label for="filter">Filter by Category </label><br>
+    <%= select_tag "category", options_from_collection_for_select(@categories, "id", "name"), class: "form-control" %>
+  </div>
 <table>
   <thead>
     <tr>
@@ -16,19 +24,33 @@
  
     <% @polls.each do |poll| %>
       <tr>
-        <td><%= poll.Title %></td>
-        <td><%= poll.Description %></td>
-        <td><%= poll.Start_Date %></td>
-        <td><%= poll.End_Date %></td>
-        <td><%= link_to 'Show', poll,class: "btn btn-primary"%></td>
+        <td><%= poll.title %></td><br>
+        <td><%= poll.description %></td>
+        <td><%= poll.start_date %></td>
+        <td><%= poll.end_date %></td>
+        <td><%= link_to 'Show', poll,class: "btn btn-info"%></td>
+        <% if current_user.role == "admin" %>
         <td><%= link_to 'Edit', edit_poll_path(poll),class: "btn btn-success" %></td>
         <td><%= link_to 'Destroy', poll, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-danger" %></td>
+        <% end %>
       </tr>
     <% end %>
+
      </div>
   </
 </table>
 
 <br>
-
+  <% if current_user.role == "admin" %>
 <%= link_to 'New Poll', new_poll_path,class: "btn btn-info" %>
+<% end %>
+
+
+<script>
+  $(document).ready(function() {
+    $('#category').change(function(){
+      var cat = $('#category').val()
+      window.location = '/polls/?category_id=' + cat
+    });
+  });
+</script>

@@ -1,35 +1,50 @@
 <!DOCTYPE html>
 <html>
   <head>
-   <meta charset="utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <%= csrf_meta_tags %>
+  
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
-<div class="container">
+<div>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <ul class="navbar-nav">
+    <% if user_signed_in? %>
+    <% if current_user.role == "admin" %>
     <li class="nav-item active">
-      <a class="nav-link" href="#">Poll</a>
+      <a class="nav-link" href="/polls">Poll</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Answer</a>
-    </li>
-    <li class="nav-item">
-      <% if user_signed_in? %> 
-      <a class="nav-link" href="<%=destroy_user_session_path%>">Sign Out</a>
+  
+    <% end %>
+    <% end %>
+    <% if user_signed_in? %> 
+     <li class="nav-item">
+        <a class="nav-link" href="/polls">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/polls">Poll Detail Page</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="/categories">Category</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="/users/sign_out">Sign Out</a>
+      </li>
       <% else %>
-    <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
-    <a class="active" href="<%=new_user_session_path%>">Admin Login</a>
-      <% end%>
-   </li>
+      <li class="nav-item">
+        <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
+        <a class="active" href="<%=new_user_session_path%>">Login</a>
+      </li>
+      <li>
+        
+      </li>
+    <% end%>
   </ul>
 </nav>
 </div>
-  Logged in as <strong><%#= current_user.email %></strong>.
+</div>
 </p>
     <title>PollApp</title>
 <% if notice %>
@@ -40,5 +55,6 @@
 
 <% end %>
     <%= yield %>
+
   </body>
 </html>

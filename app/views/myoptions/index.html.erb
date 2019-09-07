@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Myoptions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Poll</th>
+      <th>User</th>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @myoptions.each do |myoption| %>
+      <tr>
+        <td><%= myoption.poll_id %></td>
+        <td><%= myoption.user_id %></td>
+        <td><%= myoption.title %></td>
+        <td><%= link_to 'Show', myoption %></td>
+        <td><%= link_to 'Edit', edit_myoption_path(myoption) %></td>
+        <td><%= link_to 'Destroy', myoption, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New option', new_myoption_path %>

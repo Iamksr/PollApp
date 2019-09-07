@@ -12,28 +12,31 @@
   <% end %>
   </div>
 <div class="container">
+   <div class="field">
+    <%= f.label :category_id %><br />
+    <%= f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: true %>
+  </div>
   <div class="field">
-    <%= f.label :Title %>
-    <%= f.text_field :Title,class: "form-control" %>
+    <%= f.label :title %>
+    <%= f.text_field :title,class: "form-control" %>
   </div>
 <br>
   <div class="field">
-    <%= f.label :Description %>
-    <%= f.text_field :Description,class: "form-control"%>
+    <%= f.label :description %>
+    <%= f.text_field :description,class: "form-control"%>
   </div>
 
   <div class="field">
-    <%= f.label :Start_Date %>
-    <%= f.datetime_field :Start_Date,class: "form-control" %>
+    <%= f.label :start_Date %>
+    <%= f.datetime_field :start_date,class: "form-control" %>
   </div>
-
   <div class="field">
-    <%= f.label :End_Date %>
-    <%= f.datetime_field :End_Date,class: "form-control" %>
+    <%= f.label :end_date %>
+    <%= f.datetime_field :end_date,class: "form-control" %>
   </div>
    <table id="tasks">
     <%= f.fields_for :answers do |answer| %>
-      <%= answer.text_field :Title %>
+      <%= answer.text_field :title %>
       <%= answer.link_to_remove "Remove this answer" %>
     <% end %>
   </table>
@@ -45,3 +48,8 @@
 
 <% end %>
 
+<script type="text/javascript">
+  $(document).ready(function() {            
+    $('input').attr('required', true);   
+  });
+</script>

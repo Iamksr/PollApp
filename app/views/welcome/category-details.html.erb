@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Poll Detail Page</h1>
+ <div class= "container">
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+ 
+    <% @polls.each do |poll| %>
+      <tr>
+        <td><%= poll.Title %></td><br>
+        <td><%= poll.Description %></td>
+        <td><%= poll.Start_Date %></td>
+        <td><%= poll.End_Date %></td>
+        <td><%= link_to 'Poll details', poll_details_path(poll),class: "btn btn-info"%></td>
+        <% end %>
+      </tr>
+    <% end %>
+
+     </div>
+  </
+</table>
+

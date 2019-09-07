@@ -4,12 +4,21 @@ class PollsController < ApplicationController
   # GET /polls
   # GET /polls.json
   def index
-    @polls = Poll.all
+    if params[:search].present?
+      @polls = Poll.where("lower(title) LIKE :prefix OR lower(description) LIKE :prefix", prefix: "%#{params[:search].downcase}%")
+    elsif params[:category_id].present?
+      @cat = Category.find(params[:category_id])
+      @polls = @cat.polls
+    else
+      @polls = Poll.all
+    end
+    @categories = Category.all
   end
 
   # GET /polls/1
   # GET /polls/1.json
   def show
+    @vote_option = @poll.answers
   end
 
   # GET /polls/new
@@ -60,6 +69,9 @@ class PollsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def welcome
+    @poll = Poll.all
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -69,6 +81,6 @@ class PollsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def poll_params
-      params.require(:poll).permit(:Title, :Description, :Start_Date, :End_Date, answers_attributes: [:id, :Title, :poll_id, :_destroy])
+      params.require(:poll).permit(:title, :description, :start_date, :end_date, :category_id, answers_attributes: [:id, :Title, :poll_id, :_destroy])
     end
 end
