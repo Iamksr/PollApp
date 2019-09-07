@@ -1,5 +1,4 @@
 class PollsController < ApplicationController
-  before_action :set_poll, only: [:show, :edit, :update, :destroy]
 
   # GET /polls
   # GET /polls.json
@@ -18,16 +17,21 @@ class PollsController < ApplicationController
   # GET /polls/1
   # GET /polls/1.json
   def show
+    @poll = Poll.find(params[:id])
+
     @vote_option = @poll.answers
   end
 
   # GET /polls/new
   def new
+
     @poll = Poll.new
   end
 
   # GET /polls/1/edit
   def edit
+ @poll = Poll.find(params[:id])
+
   end
 
   # POST /polls
@@ -49,6 +53,7 @@ class PollsController < ApplicationController
   # PATCH/PUT /polls/1
   # PATCH/PUT /polls/1.json
   def update
+         @poll = Poll.find(params[:id])
     respond_to do |format|
       if @poll.update(poll_params)
         format.html { redirect_to @poll, notice: 'Poll was successfully updated.' }
@@ -63,6 +68,7 @@ class PollsController < ApplicationController
   # DELETE /polls/1
   # DELETE /polls/1.json
   def destroy
+     @poll = Poll.find(params[:id])
     @poll.destroy
     respond_to do |format|
       format.html { redirect_to polls_url, notice: 'Poll was successfully destroyed.' }
@@ -70,15 +76,12 @@ class PollsController < ApplicationController
     end
   end
   def welcome
-    @poll = Poll.all
+    @polls = Poll.all
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_poll
-      @poll = Poll.find(params[:id])
-    end
-
+  
     # Never trust parameters from the scary internet, only allow the white list through.
     def poll_params
       params.require(:poll).permit(:title, :description, :start_date, :end_date, :category_id, answers_attributes: [:id, :Title, :poll_id, :_destroy])

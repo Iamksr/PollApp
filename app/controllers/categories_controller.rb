@@ -10,8 +10,9 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-     @category = Category.find_by_name(params[:category])
-    @polls = @category.polls
+    # byebug
+     #@category = Category.find_by_name(params[:category])
+     #@polls = @category.polls
   end
 
   # GET /categories/new

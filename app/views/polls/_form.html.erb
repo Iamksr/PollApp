@@ -36,7 +36,7 @@
   </div>
    <table id="tasks">
     <%= f.fields_for :answers do |answer| %>
-      <%= answer.text_field :title %>
+      <%= answer.text_field :Title %>
       <%= answer.link_to_remove "Remove this answer" %>
     <% end %>
   </table>
