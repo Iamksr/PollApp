@@ -77,7 +77,7 @@ class PollsController < ApplicationController
     end
   end
   def welcome
-    @polls = Poll.all
+    @polls = Poll.all.where("start_date <=?  AND end_date >= ?",Date.today,Date.today)
   end
 
   private

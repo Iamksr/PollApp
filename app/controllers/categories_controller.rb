@@ -10,7 +10,8 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    # byebug
+    category = Category.find(params[:id])
+    @categories = category.polls.where("start_date <=?  AND end_date >= ?",Date.today,Date.today)
      #@category = Category.find_by_name(params[:category])
      #@polls = @category.polls
   end

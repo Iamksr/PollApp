@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
+  get 'sessions/create'
+
+  get 'sessions/failure'
+
   get 'welcome/index'
  get '/polls/welcome', to: 'polls#welcome'
   resources :categories
@@ -10,6 +16,10 @@ Rails.application.routes.draw do
 
   # post '/myoptions/:id' => 'myoptions#show', :as => 'myoptions'
   root 'polls#welcome'
+  # get 'auth/:provider', to: 'sessions#create'
+  match '/auth/:provider/callback', :to => 'sessions#create', via: [:get, :post]
+  match '/auth/failure', :to => 'sessions#failure', via: [:get, :post]
+ 
 
     # post '/polls/welcome' => 'polls#welcome', :as => 'welcome'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

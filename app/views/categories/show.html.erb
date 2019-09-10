@@ -1,47 +1,36 @@
-<html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
-<body>
 <div class="container">
-	<table class = "table">
-<p>
-  <strong>Category Name:</strong>
-  <%= @category.name %>
-</p>
-  <thead>
-  	<div class="from-control">
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th colspan="3"></th>
-    </tr>
-
-<% @category.polls.each do |poll| %>
-
-     <tr><li>
-        <td><%= poll.title %></td><br>
-        <td><%= poll.description %></td>
-        <td><%= poll.start_date %></td>
-        <td><%= poll.end_date %></td>
-        <td><%= link_to 'Show', poll,class: "btn btn-info" %></td>
-    </tr>
-</p>
-<% end %>
-<%= link_to 'Back', categories_path %> <br>
-
- <% if user_signed_in? %>
- <% if current_user.role == "admin" %>
-<%= link_to 'Edit', edit_category_path(@category) %> 
-<% end %>
-<% end %>
-</thead>
-  <tbody>
+  <center><h2>Category Name:</h2>
+  <p><%= @category.name %></p>  </center>          
+  <table class="table table-striped">
+    <thead>
+      <tr>
+         <th>Title</th>
+	      	<th>Description</th>
+	      	<th>Start date</th>
+	      	<th>End date</th>
+	      	<th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @category.polls.each do |poll| %>
+		     	<tr>
+		        <td><%= poll.title %></td><br>
+		        <td><%= poll.description %></td>
+		        <td><%= poll.start_date %></td>
+		        <td><%= poll.end_date %></td>
+		        <!-- <td><%#= link_to 'Show', poll,class: "btn btn-info" %></td> -->
+		    	</tr>
+				<% end %>
+      </tr>
+    </tbody>
   </table>
 </div>
-  </tbody>
+<center>
+		<%= link_to 'Back', categories_path,class: "btn btn-success "%>
+		<% if user_signed_in? %>
+		 	<% if current_user.role == "admin" %>
+				<%= link_to 'Edit', edit_category_path(@category),class: "btn btn-info" %> 
+			<% end %>
+		<% end %>
+	</center>

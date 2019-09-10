@@ -32,8 +32,8 @@
       <tr>
         <td><%= poll.title %></td><br>
         <td><%= poll.description %></td>
-        <td><%= poll.start_date %></td>
-        <td><%= poll.end_date %></td>
+        <td><%= poll.start_date.to_date %></td>
+        <td><%= poll.end_date.to_date %></td>
         <td><%= link_to 'Show', poll,class: "btn btn-info"%></td>
         <% if current_user.role == "admin" %>
         <td><%= link_to 'Edit', edit_poll_path(poll),class: "btn btn-success" %></td>

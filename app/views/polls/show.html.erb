@@ -1,15 +1,14 @@
 <!-- <p id="notice"><%#= notice %></p> -->
+<tr>
 
-<p>
-  <li>
-  <strong>Title:</strong>
+  <td><strong>Title:</strong></td>
   <%= @poll.title %>
 </p>
 <p>
-  <strong>Description:</strong>
+  <td><strong>Description:</strong></td>
   <%= @poll.description %>
 </p>
-
+</tr>
 <p>
   <strong>Start date:</strong>
   <%= @poll.start_date %>
@@ -19,6 +18,8 @@
   <strong>End date:</strong>
   <%= @poll.end_date %>
 </p>
+</li>
+</tr>
 <p></p>
 <p>Total Number of Votes: <%= @poll.myoptions.count %></p>
 <%= link_to 'Back', polls_path %>
@@ -176,7 +177,7 @@ hreft:'http://wwww.putyourlinkhere.co.uk'
 
 <div id="container"> </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   $(document).ready(function(){
     $(".datepicker").datepicker({ 
         format: 'd-mm-yyyy'  
@@ -194,4 +195,4 @@ hreft:'http://wwww.putyourlinkhere.co.uk'
       } 
     });
   }); 
-</script>
+</script> -->
