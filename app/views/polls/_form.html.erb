@@ -1,4 +1,4 @@
-<%= nested_form_for(poll) do |f| %>
+<%= nested_form_for(poll,:remote => true) do |f| %>
   <% if poll.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(poll.errors.count, "error") %> prohibited this poll from being saved:</h2>
@@ -12,10 +12,6 @@
   <% end %>
   </div>
 <div class="container">
-   <div class="field">
-    <%= f.label :category_id %><br />
-    <%= f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: true %>
-  </div>
   <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title,class: "form-control" %>
@@ -34,13 +30,17 @@
     <%= f.label :end_date %>
     <%= f.datetime_field :end_date,class: "form-control" %>
   </div>
+   <div class="field">
+    <%= f.label :category_id %><br />
+    <%= f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: true,class: "form-control"%>
+  </div>
    <table id="tasks">
     <%= f.fields_for :answers do |answer| %>
       <%= answer.text_field :Title %>
-      <%= answer.link_to_remove "Remove this answer" %>
+      <%= answer.link_to_remove "Remove",class: "btn btn-danger" %>
     <% end %>
   </table>
-  <p><%= f.link_to_add "Add a answer", :answers, :data => { :target => "#tasks" }  %></p>
+  <p><%= f.link_to_add "Add Options", :answers, :data => { :target => "#tasks" },class: "btn btn-success" %></p>
 
   <div class="actions">
     <%= f.submit %>

@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%#= notice %></p> -->
 
 <h1>Myoptions</h1>
 
@@ -14,7 +14,7 @@
 
   <tbody>
     <% @myoptions.each do |myoption| %>
-      <tr>
+      <tr><br>
         <td><%= myoption.poll_id %></td>
         <td><%= myoption.user_id %></td>
         <td><%= myoption.title %></td>

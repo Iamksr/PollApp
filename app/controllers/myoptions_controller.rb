@@ -47,7 +47,7 @@ class MyoptionsController < ApplicationController
     # @myoption = Myoption.new(myoption_params)
 
     redirect_to :back
-    flash[:notice] = 'Myoption was successfully created.'   
+    flash[:notice] = 'You have been voted. Have a nice day. Good luck for future.'   
     # respond_to do |format|
     #   if @myoption.save
     #     format.html { redirect_to @myoption, notice: 'Myoption was successfully created.' }

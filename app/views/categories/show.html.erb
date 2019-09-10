@@ -9,7 +9,7 @@
 <div class="container">
 	<table class = "table">
 <p>
-  <strong>Category:</strong>
+  <strong>Category Name:</strong>
   <%= @category.name %>
 </p>
   <thead>
@@ -24,11 +24,12 @@
 
 <% @category.polls.each do |poll| %>
 
-     <tr>
+     <tr><li>
         <td><%= poll.title %></td><br>
         <td><%= poll.description %></td>
         <td><%= poll.start_date %></td>
         <td><%= poll.end_date %></td>
+        <td><%= link_to 'Show', poll,class: "btn btn-info" %></td>
     </tr>
 </p>
 <% end %>

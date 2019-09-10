@@ -9,7 +9,7 @@ class PollsController < ApplicationController
       @cat = Category.find(params[:category_id])
       @polls = @cat.polls
     else
-      @polls = Poll.all
+      @polls = Poll.all.where("start_date <=?  AND end_date >= ?",Date.today,Date.today)
     end
     @categories = Category.all
   end
@@ -41,11 +41,12 @@ class PollsController < ApplicationController
 
     respond_to do |format|
       if @poll.save
-        format.html { redirect_to @poll, notice: 'Poll was successfully created.' }
-        format.json { render :show, status: :created, location: @poll }
-      else
-        format.html { render :new }
-        format.json { render json: @poll.errors, status: :unprocessable_entity }
+        format.js {redirect_to new_poll_path, notice: 'Poll was successfully created.'}
+      #   format.html { redirect_to @poll, notice: 'Poll was successfully created.' }
+      #   format.json { render :show, status: :created, location: @poll }
+      # else
+      #   format.html { render :new }
+      #   format.json { render json: @poll.errors, status: :unprocessable_entity }
       end
     end
   end
