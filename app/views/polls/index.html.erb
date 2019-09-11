@@ -49,8 +49,11 @@
 
 <br>
   <% if current_user.role == "admin" %>
+  <center>
 <%= link_to 'New Poll', new_poll_path,class: "btn btn-info" %>
+</center>
 <% end %>
+
 
 
 <!-- <script type="text/javascript">

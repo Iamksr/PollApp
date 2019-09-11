@@ -27,7 +27,7 @@
 <%# byebug %>
 <% if user_signed_in? %>
   <%if Myoption.where(user_id: current_user.id, poll_id: @poll.id).first.present?  %><br>
-    <span class="card-title"><h4>You have already upvoted !</h4></span>
+    <span class="card-title"><h4>You have already voted !</h4></span>
   <% else %>
     <% if @vote_option.present? %>
       <%= form_for :myoptions, :url => myoptions_path  do |f| %>
@@ -45,7 +45,7 @@
   <!--Setting Cookies -->
   <%# cookies[:vote_poll_id] = @vote_poll.id %>
   <% if cookies[:poll_id] && cookies[:poll_id] == @poll.id.to_s %><br>
-    <span class="card-title"><h4>You have already upvoted !</h4></span>
+    <span class="card-title"><h4>You have already voted !</h4></span>
   <% else %>
     <% if @vote_option.present? %>
       <%= form_for :myoptions, :url => myoptions_path   do |f| %>

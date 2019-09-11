@@ -41,19 +41,12 @@
 }
 </style>
 <body>
-<div>
-    <% if user_signed_in? %>
-    <% if current_user.role == "admin" %>
-    
-   
-    <% end %>
-    <% end %>
+
       <% if user_signed_in? %> 
           <div class="navbar">
-     
             <a class="navbar-brand" href="/polls"><strong>Vote for You!</strong></a>
-            <a class="active" href="/polls"><i class="fa fa-fw fa-home"></i> Home</a> 
-            <a href="/categories"><i class="fa fa-fw fa-database"></i>Category</a> 
+            <a class="active" href="/polls/welcome"><i class="fa fa-fw fa-home"></i> Home</a>
+            <a class="navbar-brand" href="/categories"><i class="fa fa-fw fa-database"></i>Category</a> 
             <% if current_user.role == "admin" %>
             <a href="polls/new"><i class="fa fa-fw fa-plus-circle"></i>Create A Poll</a> 
             <% end %>
@@ -63,23 +56,16 @@
         </li>
         <% else %>
            <div class="navbar">
-            <a href="polls/welcome"><i class="fa fa-fw fa-home"></i> Home</a> 
-            <a href="/categories"><i class="fa fa-fw fa-tasks"></i> Category</a> 
-            <a href="<%=new_user_session_path%>"><i class="fa fa-fw fa-user"></i> Log In</a>
-            <a href="/users/sign_up"><i class="fa fa-fw fa-user-plus"></i> Sign Up</a> 
-        <li>
+            <a class="active" href="/polls/welcome"><i class="fa fa-fw fa-home"></i> Home</a>
+            <a class="navbar-brand" href="/categories"><i class="fa fa-fw fa-database"></i>Category</a> 
+            <a class="navbar-brand" href="<%=new_user_session_path%>"><i class="fa fa-fw fa-user"></i> Log In</a>
+            <a class="navbar-brand" href="/users/sign_up"><i class="fa fa-fw fa-user-plus"></i> Sign Up</a> 
+          <li>
             <a href="https://en.wikipedia.org/wiki/Voting"><i class="fa fa-fw fa-wikipedia-w"></i></a>
             <a href="https://www.facebook.com/myvotetoday"><i class="fa fa-fw fa-facebook-official"></i></a>
         </li>
       </div>
-        </li>
-           <title>PollApp</title>
-         </li>
        <% end%>
-     </ul>
-    </nav>
- </div>
- </div>
 </p>
     <title>PollApp</title>
         <% if notice %>
@@ -89,5 +75,6 @@
            <p class="alert alert-danger"><%= alert %></p>
         <% end %>
      <%= yield %>
+    
   </body>
 </html>
